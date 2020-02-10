@@ -17,4 +17,16 @@ export class AppComponent {
     ]
   }
 
+  TnIncompletas(){
+    let count=0;
+    if (this.model.items)
+      this.model.items.forEach((item,index)=>!item.done? count++:true);
+    return count;
+  }
+
+  addItem(tarea){
+    //console.log(tarea);
+    this.model.items.push({action: tarea, done: false});
+  }
+
 }

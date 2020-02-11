@@ -27,12 +27,12 @@
       </thead>
       <tbody>
 
-      <tr class="row" *ngFor="let item of model.items; let i=index">
+      <tr class="row" *ngFor=" let i=index; let item of model.items | ordenatareas |filtroDone: !mostrarTodas">
         <td class="col-4">{{item.action}}</td>
         <td class="col-1"><input type="checkbox" [(ngModel)]="item.done"></td>
         <td class="col-1">
           <app-prioridad [prioridad]="item.prioridad"
-                  (nuevaPrioridad)="nuevaPrioridad($event,i)"
+                  (nuevaPrioridad)="nuevaPrioridad($event,item.id)"
             >
           </app-prioridad> </td>
         <td class="col-4"> {{item | json}}</td>
@@ -40,5 +40,10 @@
 
       </tbody>
     </table>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox"
+             id="todos" [(ngModel)]="mostrarTodas">
+      <label class="form-check-label" for="todos">Mostrar todas</label>
+    </div>
   </div>
 </div>

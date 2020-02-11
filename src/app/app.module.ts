@@ -4,11 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import {PrioridadComponent} from './prioridad.component';
+import {OrdenaTareasPipe} from './ordenaTareas.pipe';
+import { FiltroDonePipe } from './filtro-done.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PrioridadComponent
+    PrioridadComponent,
+    OrdenaTareasPipe,
+    FiltroDonePipe
   ],
   imports: [
     BrowserModule,

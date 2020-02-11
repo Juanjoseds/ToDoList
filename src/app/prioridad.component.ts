@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-prioridad',
@@ -14,34 +14,15 @@ import {Component} from '@angular/core';
          (click)="voto(-1)"></i>
     </div>
   `,
-  styles:[`
-    .prioridad {
-      font-size: .9em;
-      line-height: .7;
-    }
-    .prioridad i{
-      display:block;
-      font-size: .8em;
-    }
-    .oi {
-      color: #ccc;
-    }
-    .resaltada {
-      color:red;
-    }
-    .fueralimites {
-      pointer-events: none;
-    }
-    .oi:hover{
-      cursor:pointer;
-    }
+  styleUrls:['prioridad.component.scss']
 
-  `]
 })
 export class PrioridadComponent {
-  prioridad=0;
+  @Input() prioridad=0;
+  @Output() nuevaPrioridad = new EventEmitter();
 
   voto(number: number) {
     this.prioridad+=number;
+    this.nuevaPrioridad.emit(this.prioridad);
   }
 }

@@ -27,14 +27,18 @@
       </thead>
       <tbody>
 
-      <tr class="row" *ngFor="let item of model.items">
-        <td class="col-6">{{item.action}}</td>
-        <td class="col-3"><input type="checkbox" [(ngModel)]="item.done"></td>
-        <td class="col-3">{{item.done}}</td>
+      <tr class="row" *ngFor="let item of model.items; let i=index">
+        <td class="col-4">{{item.action}}</td>
+        <td class="col-1"><input type="checkbox" [(ngModel)]="item.done"></td>
+        <td class="col-1">
+          <app-prioridad [prioridad]="item.prioridad"
+                  (nuevaPrioridad)="nuevaPrioridad($event,i)"
+            >
+          </app-prioridad> </td>
+        <td class="col-4"> {{item | json}}</td>
       </tr>
 
       </tbody>
     </table>
-    <app-prioridad></app-prioridad>
   </div>
 </div>

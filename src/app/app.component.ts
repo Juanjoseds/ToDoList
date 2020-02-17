@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {isBooleanLiteralLike} from "codelyzer/util/utils";
+import {isBoolean} from "util";
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,7 @@ export class AppComponent {
     ]
   };
   mostrarTodas=true;
+  ordenaralfabetico:boolean;
 
   constructor() {
    // this.ordenaTareas();
@@ -36,10 +39,24 @@ export class AppComponent {
    // this.ordenaTareas();
   }
 
+  removeItem(id){
+    let i= this.model.items.findIndex((item:any)=>item.id==id, id);
+    this.model.items.splice(i, 1);
+  }
+
   nuevaPrioridad($event: any,id) {
     //console.log(i);
     let i= this.model.items.findIndex((item:any)=>item.id==id, id);
     this.model.items[i].prioridad=$event;
+  }
+
+  ordenar(boolean){
+    if(boolean == true){
+      this.ordenaralfabetico = true;
+    }
+    if (boolean == false){
+      this.ordenaralfabetico = false;
+    }
   }
 
 /*  ordenaTareas(){

@@ -21,21 +21,22 @@
     <table class="table table-striped table-hover table-sm">
       <thead>
       <tr class="row">
-        <th class="col-8">encab1</th>
-        <th class="col-4">encab2</th>
+        <th class="col-3">Tarea <i class="oi oi-arrow-top" (click)="ordenar(true)"></i> <i class="oi oi-arrow-bottom" (click)="ordenar(false)"></i></th>
+        <th class="col-3">Hecho</th>
+        <th class="col-3">Prioriridad</th>
+        <th class="col-3">Eliminar</th>
+
       </tr>
       </thead>
       <tbody>
 
       <tr class="row" *ngFor=" let i=index; let item of model.items | ordenatareas |filtroDone: !mostrarTodas">
-        <td class="col-4">{{item.action}}</td>
-        <td class="col-1"><input type="checkbox" [(ngModel)]="item.done"></td>
-        <td class="col-1">
-          <app-prioridad [prioridad]="item.prioridad"
-                  (nuevaPrioridad)="nuevaPrioridad($event,item.id)"
-            >
-          </app-prioridad> </td>
-        <td class="col-4"> {{item | json}}</td>
+        <td class="col-3">{{item.action}}</td>
+        <td class="col-3"><input type="checkbox" [(ngModel)]="item.done"></td>
+        <td class="col-3">
+          <app-prioridad [prioridad]="item.prioridad" (nuevaPrioridad)="nuevaPrioridad($event,item.id)"> </app-prioridad> </td>
+        <!-- <td class="col-4"> {{item | json}}</td> -->
+        <td class="col-3"><i class="oi oi-trash" (click)="removeItem(item.id)"></i></td>
       </tr>
 
       </tbody>

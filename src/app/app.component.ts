@@ -18,52 +18,57 @@ export class AppComponent {
       {id: "dddddeeeee", action: "recoger", done: false, prioridad: 2},
     ]
   };
-  mostrarTodas=true;
-  ordenaralfabetico:boolean;
+  mostrarTodas = true;
+  ordenaralfabetico: number = 1;
 
   constructor() {
-   // this.ordenaTareas();
+    // this.ordenaTareas();
   }
 
-  TnIncompletas(){
-    let count=0;
+  TnIncompletas() {
+    let count = 0;
     if (this.model.items)
-      this.model.items.forEach((item,index)=>!item.done? count++:true);
+      this.model.items.forEach((item, index) => !item.done ? count++ : true);
     return count;
   }
 
-  addItem(tarea){
+  addItem(tarea) {
     //console.log(tarea);
-    let nuevoId=Math.random().toString(36).substr(2,10);
+    let nuevoId = Math.random().toString(36).substr(2, 10);
     this.model.items.push({id: nuevoId, action: tarea, done: false, prioridad: 4});
-   // this.ordenaTareas();
+    // this.ordenaTareas();
   }
 
-  removeItem(id){
-    let i= this.model.items.findIndex((item:any)=>item.id==id, id);
+  removeItem(id) {
+    let i = this.model.items.findIndex((item: any) => item.id == id, id);
     this.model.items.splice(i, 1);
   }
 
-  nuevaPrioridad($event: any,id) {
+  nuevaPrioridad($event: any, id) {
     //console.log(i);
-    let i= this.model.items.findIndex((item:any)=>item.id==id, id);
-    this.model.items[i].prioridad=$event;
+    let i = this.model.items.findIndex((item: any) => item.id == id, id);
+    this.model.items[i].prioridad = $event;
   }
 
-  ordenar(boolean){
-    if(boolean == true){
-      this.ordenaralfabetico = true;
+  ordenar(id) {
+    if (id == 1) {
+      console.log("HAS PULSADO Y ES 1");
+      this.ordenaralfabetico = 1;
     }
-    if (boolean == false){
-      this.ordenaralfabetico = false;
+
+    if (id == 2) {
+      console.log("HAS PULSADO Y ES 2");
+      this.ordenaralfabetico = 2;
+    }
+
+    if (id == 3) {
+      console.log("HAS PULSADO Y ES 3");
+      this.ordenaralfabetico = 3;
+    }
+
+    if (id == 4) {
+      console.log("HAS PULSADO Y ES 4");
+      this.ordenaralfabetico = 4;
     }
   }
-
-/*  ordenaTareas(){
-    this.model.items.sort((a:any,b:any)=>{
-      if(a.action.toLowerCase()<b.action.toLowerCase()) return -1;
-      else if (a.action.toLowerCase()>b.action.toLowerCase()) return 1;
-      else return 0;
-    })
-  }*/
 }

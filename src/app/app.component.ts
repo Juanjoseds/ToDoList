@@ -52,22 +52,15 @@ export class AppComponent {
 
   ordenar(id) {
     if (id == 1) {
-      console.log("HAS PULSADO Y ES 1");
       this.ordenaralfabetico = 1;
     }
-
     if (id == 2) {
-      console.log("HAS PULSADO Y ES 2");
       this.ordenaralfabetico = 2;
     }
-
     if (id == 3) {
-      console.log("HAS PULSADO Y ES 3");
       this.ordenaralfabetico = 3;
     }
-
     if (id == 4) {
-      console.log("HAS PULSADO Y ES 4");
       this.ordenaralfabetico = 4;
     }
   }

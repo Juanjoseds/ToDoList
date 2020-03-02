@@ -1,28 +1,29 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {isBooleanLiteralLike} from "codelyzer/util/utils";
 import {isBoolean} from "util";
+import {TodoService} from "./TodoService";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   title = "Lista de DAW's";
   model = {
     user: 'Daw',
-    items: [
-      {id: "aaaaabbbbb", action: "estudiar daw", done: false, prioridad: 4},
-      {id: "bbbbbccccc", action: "ayudar a mami", done: false, prioridad: 3},
-      {id: "cccccddddd", action: "ver Netflix", done: true, prioridad: 8},
-      {id: "dddddeeeee", action: "recoger", done: false, prioridad: 2},
-    ]
+    items: []
+
   };
+  suscripcion=Subscription;
   mostrarTodas = true;
   ordenaralfabetico: number = 1;
 
-  constructor() {
+  constructor(private todoService:TodoService) {
     // this.ordenaTareas();
+    //this.model.items = todoService.getItems();
+    this.subscripcion=todoService.getItems().subscribe((data:any)=>this.model.items=data);
   }
 
   TnIncompletas() {
@@ -63,5 +64,9 @@ export class AppComponent {
     if (id == 4) {
       this.ordenaralfabetico = 4;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.suscripcion.unsubscribe();
   }
 }

@@ -16,7 +16,7 @@ export class AppComponent implements OnDestroy {
     items: []
 
   };
-  suscripcion=Subscription;
+  suscripcion:Subscription;
   mostrarTodas = true;
   ordenaralfabetico: number = 1;
 

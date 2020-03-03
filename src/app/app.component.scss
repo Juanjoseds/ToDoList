@@ -1,12 +1,16 @@
-div{
-  p {color:red;}
-  color: #1976d2;
-}
-
 .oi.flechaActiva {
   color: black;
 }
 
 .oi {
   color: #ced4da;
+}
+
+.gridimages{
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.imgflikr{
+  height: 15em;
 }

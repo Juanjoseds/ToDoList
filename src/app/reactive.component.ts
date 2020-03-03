@@ -8,14 +8,31 @@ declare var $:any;
 @Component({
   selector: 'reactive',
   template: `
-  <input type="text" class="form-control" id="search" placeholder="Search...">
-  `
+    <input type="text" class="form-control" id="search" placeholder="Search...">
+
+    <div class="container mt-3">
+    <div class="row row-cols-3">
+       <div class="mb-2" *ngFor=" let i=index; let item of datos?.items">
+        <div class="card" style="width: 18rem;">
+          <img src="{{datos.items[i].media.m}}" class="card-img-top imgflikr" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{datos.items[i].title}}</h5>
+            <p class="card-text">{{datos.items[i].tags}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  `,
+  styleUrls: ['./app.component.scss']
 
 })
 export class ReactiveComponent implements OnInit, OnDestroy{
   keyups:any;
   flickerApi="https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
   subscripcion:Subscription;
+  datos:any;
+
   constructor() {}
   ngOnInit(){
     // JQUERY para capturar lo que se escribe en el input
@@ -41,7 +58,10 @@ export class ReactiveComponent implements OnInit, OnDestroy{
     // NOS SUSCRIBIMOS A LO QUE PASE
     this.subscripcion= this.keyups.subscribe(
       // FUNCIÓN ANONIMA
-      (data:any) => console.log(data),
+      (data:any) =>{
+        this.datos = data;
+        console.log(this.datos.items[0]);
+      },
       (error:any) => console.log("error", error),
       () => console.log("completado")
     );

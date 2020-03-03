@@ -11,17 +11,21 @@ declare var $:any;
     <input type="text" class="form-control" id="search" placeholder="Search...">
 
     <div class="container mt-3">
-    <div class="row row-cols-3">
-       <div class="mb-2" *ngFor=" let i=index; let item of datos?.items">
-        <div class="card" style="width: 18rem;">
-          <img src="{{datos.items[i].media.m}}" class="card-img-top imgflikr" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{datos.items[i].title}}</h5>
-            <p class="card-text">{{datos.items[i].tags}}</p>
+      <div class="row row-cols-3">
+
+        <div class="mb-2" *ngFor=" let i=index; let item of datos?.items">
+        <div class="col">
+          <div class="card card-search" style="width: 18rem;">
+            <img src="{{datos.items[i].media.m}}" class="card-img-top imgflikr" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{datos.items[i].title}}</h5>
+              <p class="card-text">{{datos.items[i].date_taken}}</p>
+            </div>
+            </div>
           </div>
         </div>
+
       </div>
-    </div>
     </div>
   `,
   styleUrls: ['./app.component.scss']

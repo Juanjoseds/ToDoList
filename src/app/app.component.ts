@@ -23,8 +23,11 @@ export class AppComponent implements OnDestroy {
   constructor(private todoService:TodoService) {
     // this.ordenaTareas();
     //this.model.items = todoService.getItems();
-    this.suscripcion=todoService.getItems().subscribe((data:any)=>this.model.items=data);
+    this.todoService.login().subscribe(()=>this.suscripcion=todoService.getFireItems().subscribe((data:any)=>this.model.items=data));
+
   }
+
+
 
   TnIncompletas() {
     let count = 0;

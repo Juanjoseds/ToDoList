@@ -9,6 +9,10 @@ import { FiltroDonePipe } from './filtro-done.pipe';
 import {CallbackHell} from './callbackHell';
 import {ReactiveComponent} from "./reactive.component";
 import {HttpClientModule} from "@angular/common/http";
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../environments/environment";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {AngularFireAuthModule} from "@angular/fire/auth";
 
 @NgModule({
   declarations: [
@@ -22,7 +26,10 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
